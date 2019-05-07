@@ -1,6 +1,6 @@
 {
 	"name": "wrap-await",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Wraps code that contains await expressions in an async iife",
 	"license": "MIT",
 	"repository": "nikersify/wrap-await",
