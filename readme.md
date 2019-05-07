@@ -1,4 +1,4 @@
-# wrap-await [![Build Status](https://travis-ci.com/nikersify/wrap-await.svg?branch=master)](https://travis-ci.com/nikersify/wrap-await)
+# wrap-await [![Build Status](https://travis-ci.org/nikersify/wrap-await.svg?branch=master)](https://travis-ci.org/nikersify/wrap-await)
 
 > Wraps code that contains await expressions in an async iife
 
