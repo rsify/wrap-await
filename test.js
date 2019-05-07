@@ -1,8 +1,10 @@
 import vm from 'vm'
 import {inspect} from 'util'
 
-import isPromise from 'is-promise'
 import test from 'ava'
+
+import isPromise from 'is-promise'
+import semver from 'semver'
 
 import wrapAwait from '.'
 
@@ -35,7 +37,6 @@ test('transform', async t => {
 		['await Promise.resolve(1)', 1],
 		['({x: await Promise.resolve(1)})', {x: 1}],
 		['Promise.resolve(10)', 'Promise { 10 }'],
-		['for await (const x of []) {}', undefined],
 		['for (const x of [1, 2, 3]) {await x}', undefined],
 		[
 			'await Promise.all([1, 2, 3].map(async x => Promise.resolve(x * 2)))',
@@ -74,7 +75,11 @@ test('transform', async t => {
 		['o', 1],
 		['typeof p', 'undefined'],
 		['r', 'function r() {}']
-	]
+	].concat(
+		semver.gte(process.version, '10.0.0') ?
+			[['for await (const x of []) {}', undefined]] :
+			[]
+	)
 
 	const ev = createEv()
 
